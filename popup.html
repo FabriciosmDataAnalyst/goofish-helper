@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goofish Helper</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo"><img src="icons/icon48.png" alt="Goofish" style="width:28px;height:28px;border-radius:6px;object-fit:contain;background:#fff;padding:2px;"></div>
+    <div>
+      <h1>Goofish Helper</h1>
+      <p class="sub">Oculta login • Conversor • Busca rápida</p>
+    </div>
+  </header>
+
+  <section class="card">
+    <h2>⚙️ Controles</h2>
+    <label class="toggle">
+      <input type="checkbox" id="toggleLogin" checked>
+      <span class="slider"></span>
+      <span class="label" data-i18n="hideLogin">Ocultar popup de login</span>
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="toggleConvert" checked>
+      <span class="slider"></span>
+      <span class="label" data-i18n="convertAuto">Conversão automática na página</span>
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="toggleMenu" checked>
+      <span class="slider"></span>
+      <span class="label" data-i18n="floatMenu">Menu flutuante na página</span>
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="toggleTranslate" checked>
+      <span class="slider"></span>
+      <span class="label" data-i18n="translateFilters">Traduzir filtros</span>
+    </label>
+    <div style="display:flex; gap:8px; margin-top:8px;">
+      <label style="flex:1; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:11px; font-weight:700; color:#7c2d12;">🌐 <span data-i18n="language">Idioma</span></span>
+        <select id="languageSelect" style="width:100%; padding:6px 8px; border:1px solid #fed7aa; border-radius:7px; background:#fff7ed; font-size:11px; font-weight:600; color:#431407; outline:none;">
+          <option value="pt">PT</option>
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+        </select>
+      </label>
+      <label style="flex:1.2; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:11px; font-weight:700; color:#7c2d12;">💱 <span data-i18n="currencyOnPage">Moeda</span></span>
+        <select id="currencySelect" style="width:100%; padding:6px 8px; border:1px solid #fed7aa; border-radius:7px; background:#fff7ed; font-size:11px; font-weight:600; color:#431407; outline:none;">
+          <option value="ALL">Todas</option>
+          <option value="BRL">BRL</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="MXN">MXN</option>
+          <option value="ARS">ARS</option>
+          <option value="COP">COP</option>
+          <option value="CLP">CLP</option>
+          <option value="PEN">PEN</option>
+          <option value="CAD">CAD</option>
+          <option value="AUD">AUD</option>
+        </select>
+      </label>
+    </div>
+    <span style="font-size:9px; color:#a16207; display:block; margin-top:4px;" data-i18n="currencyHint">Escolha qual moeda aparece ao lado do preço em ¥</span>
+  </section>
+
+  <section class="card">
+    <h2>💱 Conversor CNY</h2>
+    <div class="converter">
+      <div class="input-row">
+        <span class="currency">¥ CNY</span>
+        <input type="number" id="cnyInput" placeholder="100" min="0" step="0.01">
+      </div>
+      <details class="extra">
+        <summary>Mais moedas (LATAM + CAD/AUD) ▾</summary>
+        <div class="results" id="resultsLATAM" style="grid-template-columns: 1fr 1fr 1fr 1fr; margin-top:6px;">
+          <div class="result"><span>🇲🇽 MXN</span><b id="mxnVal">—</b></div>
+          <div class="result"><span>🇦🇷 ARS</span><b id="arsVal">—</b></div>
+          <div class="result"><span>🇨🇴 COP</span><b id="copVal">—</b></div>
+          <div class="result"><span>🇨🇱 CLP</span><b id="clpVal">—</b></div>
+        </div>
+        <div class="results" id="resultsExtra" style="grid-template-columns: 1fr 1fr 1fr; margin-top:6px;">
+          <div class="result"><span>🇵🇪 PEN</span><b id="penVal">—</b></div>
+          <div class="result"><span>🇨🇦 CAD</span><b id="cadVal">—</b></div>
+          <div class="result"><span>🇦🇺 AUD</span><b id="audVal">—</b></div>
+        </div>
+      </details>
+      <div class="rate-info" id="rateInfo">Carregando taxas...</div>
+      <button class="btn secondary" id="refreshRates">↻ Atualizar taxas</button>
+    </div>
+  </section>
+
+  <section class="card" style="border-color:#fecaca;">
+    <button class="btn" id="disableExtension" style="width:100%; background:#dc2626; color:#fff; border:1px solid #b91c1c; font-weight:800;">⛔ Desativar extensão</button>
+    <span style="font-size:9px; color:#a16207; display:block; margin-top:6px; text-align:center;">Desativa toda a extensão até reativar em chrome://extensions</span>
+  </section>
+
+  <footer class="footer">
+    <span>Taxas via exchangerate.host • Cache 12h</span>
+    <a href="https://www.goofish.com" target="_blank">Abrir Goofish →</a>
+  </footer>
+
+<script src="popup.js"></script>
+</body>
+</html>

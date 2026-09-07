@@ -1,0 +1,44 @@
+/* Goofish Helper - content.css */
+/* Camada 1: esconde modais de login conhecidos o mais cedo possível */
+
+/* Ant Design modal / mask genéricos que contenham login */
+div[class*="login" i],
+div[class*="Login" i],
+div[class*="sign-in" i] {
+  /* não esconde tudo agressivamente; o JS faz filtragem por texto */
+}
+
+/* Badges de conversão inline */
+.gh-convert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 6px;
+  padding: 2px 6px;
+  font-size: 11px;
+  line-height: 1.2;
+  border-radius: 6px;
+  background: #fff7ed;
+  border: 1px solid #ffedd5;
+  color: #9a3412;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.gh-convert-badge b {
+  font-weight: 600;
+}
+.gh-convert-badge .gh-flag {
+  font-size: 10px;
+}
+
+/* Container do menu flutuante é Shadow DOM, mas fallback caso injetado sem shadow */
+#gh-floating-root {
+  position: fixed;
+  left: 16px;
+  right: auto;
+  top: 72px;
+  transform: none;
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
