@@ -1,6 +1,6 @@
 # 🐟 Goofish Helper
 
-> **Navegue no Goofish (Xianyu) sem barreiras.** Bloqueio de login, conversão CNY → 10 moedas, tradução PT/EN/ES, menu flutuante e integração direta com **CSSBUY** com seu código de afiliado.
+> **Navegue no Goofish (Xianyu) sem barreiras.** Bloqueio de login, conversão CNY → 10 moedas, tradução PT/EN/ES, menu flutuante e integração direta com **CSSBUY**.
 
 ![Version](https://img.shields.io/badge/version-1.2.1-orange)
 ![Manifest](https://img.shields.io/badge/manifest-v3-blue)
@@ -18,7 +18,7 @@
 | **🌐 Tradução** | `综合→Geral`, `包邮→Frete grátis`, `卖家信用优秀→Vendedor excelente` (âmbar), `极好→Vendedor ótimo` (azul), `良好→Vendedor bom` (verde), `百分百好评→Avaliação 100%` (roxo), `回复超快→Resposta rápida` (rosa), `累计降价`, `小时前发布` (`10小时前发布` → `10 horas atrás` mantendo número), `天内降价`, `未拆封`, `少许/少量/严重磕碰划痕`, etc. Fallback para pills + re-tradução PT↔EN↔ES sem reload. |
 | **🏪 Selos em imagem** | `鱼小铺 L5-L7` (`tps-201-48`) e `Vendedor Certificado` (`tps-162-48` `O1CN01LYPs6n`) e `7天无理由退货` (`tps-216-42` / `228-42` `O1CN01k7P6QR`/`O1CN01IdADAH`) viram texto acima da imagem: `Loja Nível L5`, `Vendedor Certificado`, `Devolução em 7 dias` (traduzido por idioma). |
 | **🧭 Menu flutuante** | `Shadow DOM` em `left:16px top:72px`, arrastável (salvo em `chrome.storage.sync:ghTop`), sem scroll (gap 2px, 12 botões). Sem ícones genéricos — só texto. Botão `🛒 CSSBUY` (verde) só em página de produto. |
-| **🛒 CSSBUY** | Em produto (`/item?id=...`) injeta barra fixa `🛒 Abrir no CSSBUY` (top:72px) e botão no menu. Abre `https://www.cssbuy.com/shop/goodsDetail?type=xianyu&id={id}&t={ts}&promotionCode=821ce7fb53ba04e7` (seu código sempre) + `clipboard` do link Goofish. Fallback `search?keyword=`. |
+| **🛒 CSSBUY** | Em produto (`/item?id=...`) injeta barra fixa `🛒 Abrir no CSSBUY` (top:72px) e botão no menu. Abre `https://www.cssbuy.com/shop/goodsDetail?type=xianyu&id={id}` + `clipboard` do link Goofish. Fallback `search?keyword=`. |
 | **⚙️ Popup** | Toggles `Ocultar login / Conversão / Menu / Traduzir`, seletores `Idioma (PT/EN/ES)` e `Moeda (ALL/BRL/USD...)`, conversor manual `¥ CNY → 10 moedas`, `↻ Atualizar taxas` e `⛔ Desativar extensão` (kill-switch via `storage` + `management` ou reload). |
 | **🚫 Kill-switch** | Botão `⛔ Desativar` remove `gh-floating-root`, `gh-cssbuy-bar`, badges e desconecta observers; `↻ Reativar` limpa flag e recarrega abas. |
 
@@ -43,7 +43,7 @@
 * **Login nunca mais:** navegue e o modal some sozinho. Se aparecer, pressione `ESC` ou use `window.ghKill()` no console.
 * **Preço:** passe o mouse no badge `≈ R$...` para ver cotação completa `1 CNY = ...` com data.
 * **Idioma/moeda:** popup → `Idioma` troca todo o menu e filtros instantaneamente; `Moeda` troca `BRL`/`ALL` nos badges.
-* **CSSBUY:** dentro de um produto clique em `🛒 Abrir no CSSBUY` (barra verde no topo direito ou no menu). Seu código `821ce7fb53ba04e7` já vai na URL.
+* **CSSBUY:** dentro de um produto clique em `🛒 Abrir no CSSBUY` (barra verde no topo direito ou no menu).
 * **Desativar:** popup → `⛔ Desativar extensão`. Para reativar, mesmo botão vira `↻ Reativar` ou ative em `chrome://extensions`.
 
 ---
@@ -102,18 +102,6 @@ node --check background.js
 * **Content script:** `run_at: document_start`, `all_frames: true`, `Shadow DOM` para isolamento, `MutationObserver` + polling para SPA do Goofish.
 * **Tradução:** `FILTER_MAPS[pt/en/es]` + `reverseMap` para re-traduzir sem reload + fallback em `span/div` folhas para pills.
 * **Conversão:** `extractCny()` suporta `¥ 48.50`, `¥ 3.80万`, `49元`; `convertedSet:WeakSet` + `productCard` dedup.
-
----
-
-## 🔗 CSSBUY Afiliado
-
-Seu código `821ce7fb53ba04e7` é injetado em toda abertura:
-
-```
-https://www.cssbuy.com/shop/goodsDetail?type=xianyu&id={GOOFISH_ID}&t={Date.now()}&promotionCode=821ce7fb53ba04e7
-```
-
-Cashback cai automaticamente quando o item é comprado via seu link.
 
 ---
 
