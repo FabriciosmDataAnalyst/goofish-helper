@@ -7,6 +7,13 @@
 ![License](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey)
 ![Chrome](https://img.shields.io/badge/Chrome-88%2B-green)
 
+## 📸 Exemplos
+
+<p align="center">
+  <img src="./Exemplo01.png" alt="Exemplo 01" width="420" />
+  <img src="./Exemplo02.png" alt="Exemplo 02" width="420" />
+</p>
+
 ---
 
 ## ✨ Funcionalidades
@@ -117,6 +124,5 @@ Fork original por **Slet**, mantido por **Daudas** / **SantannaCarlos** — este
 
 * Logo `闲鱼` © Alibaba / Goofish
 * Taxas via `exchangerate.host`, `open.er-api.com`, `frankfurter.app`
-* Ícones removidos genéricos (📱 repetidos) — agora só texto limpo
 
 > Dúvidas? Abra uma issue. PRs bem-vindos!
