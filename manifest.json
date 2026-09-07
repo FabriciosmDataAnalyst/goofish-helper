@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Goofish Helper",
+  "version": "1.2.1",
+  "description": "Oculta login Goofish, converte CNY→10 moedas (USD/EUR/BRL/MXN/ARS/COP/CLP/PEN/CAD/AUD), traduz filtros PT/EN/ES e busca por marcas.",
+  "permissions": ["storage", "alarms", "management", "tabs", "activeTab"],
+  "host_permissions": [
+    "https://*.goofish.com/*",
+    "https://*.taobao.com/*",
+    "https://*.goofish.com.tw/*",
+    "https://api.exchangerate.host/*",
+    "https://api.frankfurter.app/*",
+    "https://open.er-api.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.goofish.com/*", "https://*.taobao.com/*", "https://*.goofish.com.tw/*", "https://*.idlefish.com/*", "https://*.2.taobao.com/*", "https://*.taobao.com.tw/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_title": "Goofish Helper",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*"],
+      "matches": ["https://*.goofish.com/*", "https://*.taobao.com/*", "https://*.goofish.com.tw/*", "https://*.idlefish.com/*"]
+    }
+  ]
+}
